@@ -1,0 +1,34 @@
+"""
+URL configuration for MovieAPI project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/6.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+
+from django.contrib import admin
+from django.urls import path
+from rest_framework.views import APIView
+
+from MovieAPP import views
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("create",views.MovieCreate.as_view()),
+    path("list",views.Movielist.as_view()),
+    path("details/<int:i>",views.MovieDetails.as_view()),
+    path("delete/<int:i>",views.MovieDelete.as_view()),
+    path("put/<int:i>",views.MovieUpdate.as_view()),
+    path("patch/<int:i>",views.MovieUpdatePatch.as_view()),
+    path("search",views.SearchAPIView.as_view()),
+    #path("user",views.RegisterUser.as_view()),
+    path("register",views.RegisterAPIView.as_view()),
+]
